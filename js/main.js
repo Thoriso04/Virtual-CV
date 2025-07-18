@@ -188,8 +188,8 @@ new Chart(softSkillsCtx, {
         datasets: [{
             label: 'Proficiency',
             data: [85, 80, 85, 75, 90, 70],
-            backgroundColor: 'rgba(102, 164, 205, 0.2)', 
-            borderColor: 'rgba(5, 133, 252, 1)', // Darker green for border
+            backgroundColor: 'rgba(102, 164, 205, 0.04)', 
+            borderColor: 'rgba(5, 133, 252, 1)', 
             pointBackgroundColor: 'rgba(5, 133, 252, 1)',
             borderWidth: 2
         }]
@@ -218,12 +218,13 @@ new Chart(softSkillsCtx, {
                 beginAtZero: true,
                 max: 100,
                 ticks: {
+                    display: false,
                     stepSize: 20,
-                    color: '#eee', // Make radar labels visible on dark background
+                    color: '#333', // Make radar ticks (numbers) visible on dark background
                     backdropColor: 'transparent' // No background behind labels
                 },
                 pointLabels: {
-                    color: '#eee' // Make point labels visible on dark background
+                    color: '#333' // Make point labels (skills names) visible on dark background
                 },
                 grid: {
                     color: 'rgba(255, 255, 255, 0.2)' // Lighter grid lines
