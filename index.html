@@ -1,112 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thoriso Mbambisa - Virtual CV</title>
-    
-    <link rel="stylesheet" href="css/style.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <script src="https://unpkg.com/scrollreveal"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thoriso Mbambisa - Virtual CV</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 <body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Thoriso Mbambisa</div>
+      <ul class="nav-links">
+        <li><a href="#about" class="nav-link-item">About</a></li>
+        <li><a href="#skills" class="nav-link-item">Skills</a></li>
+        <li><a href="#education" class="nav-link-item">Education</a></li>
+        <li><a href="#projects" class="nav-link-item">Projects</a></li>
+        <li><a href="assets/resume.pdf" target="_blank" download class="btn-download">Download CV</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <header>
-        <nav class="navbar">
-            <div class="logo">Thoriso Mbambisa</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="assets/resume.pdf" target="_blank" download class="btn-download">Download CV</a></li>
-            </ul>
-        </nav>
-    </header>
+  <main>
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <h1 class="intro-text">
+          Hi, I'm Thoriso Mbambisa and I am a<br>
+          <span class="typing-text"></span>
+        </h1>
+        <a href="#about" class="scroll-down-btn">Scroll Down <span class="arrow">↓</span></a>
+      </div>
+    </section>
 
-    <main>
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <h1 class="intro-text">Hi, I'm Thoriso. A<br><span class="typing-text"></span></h1>
-                <a href="#about" class="scroll-down-btn">Scroll Down <span class="arrow">↓</span></a>
-            </div>
-        </section>
+    <section id="about" class="section">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            I am a driven and forward-thinking individual that thrives in dynamic, high-impact environments. 
+            I enjoy challenges that demand critical thinking, continuous learning, and a clear sense of purpose. 
+            Whether it's building a backend service, analyzing complex data, or learning a new framework, 
+            I approach every project with curiosity, resilience, and a results-driven mindset. I am currently 
+            studying toward an NQF Level 7 Bachelor of Science degree. My studies have equipped me with solid 
+            foundations in software engineering, databases, and programming. I’m passionate about building clean, 
+            efficient, and scalable systems that solve real-world problems. I thrive in environments that challenge 
+            my thinking, encourage continuous learning, and push me to grow both as a developer and a problem solver. 
+            Whether it's optimizing performance or making sense of data, I enjoy turning complex ideas into practical 
+            solutions. Let’s connect — I’m always excited to collaborate and create impactful digital experiences.
+          </p>
+        </div>
+      </div>
+    </section>
 
-        <section id="about" class="section">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I’m a driven and forward-thinking Information Technology student at North-West University, currently studying toward an NQF Level 7 Bachelor of Science degree. My academic journey has equipped me with strong foundations in structured programming, data structures, and user interface development. I’m deeply passionate about back-end software development, with a growing interest in data analytics and machine learning. I enjoy turning ideas into functional systems and exploring how data can be used to solve real-world problems. I thrive in dynamic environments that challenge me to think critically and grow continuously—both as a developer and a problem solver.</p>
-                </div>
-            </div>
-        </section>
+    <section id="skills" class="section">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-container">
+        <div class="skills-category">
+          <h3>Technical Skills</h3>
+          <canvas id="technicalSkillsChart"></canvas>
+        </div>
+        <div class="skills-category">
+          <h3>Soft Skills</h3>
+          <canvas id="softSkillsChart"></canvas>
+        </div>
+      </div>
+    </section>
 
-        <section id="skills" class="section">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-container">
-                <div class="skills-category">
-                    <h3>Technical Skills</h3>
-                    <canvas id="technicalSkillsChart"></canvas>
-                </div>
-                <div class="skills-category">
-                    <h3>Soft Skills</h3>
-                    <canvas id="softSkillsChart"></canvas>
-                </div>
-            </div>
-        </section>
+    <section id="education" class="section">
+      <h2 class="section-title">Education</h2>
+      <div class="education-content">
+        <ul>
+          <li>
+            <strong>Boksburg High School</strong><br />
+            <span class="edu-sub">National Senior Certificate Bachelors Degree Pass</span><br />
+            <em>2018 - 2022</em>
+          </li>
+          <li>
+            <strong>North-West University</strong><br />
+            <span class="edu-sub">BSc Information Technology (NQF Level 7)</span><br />
+            <em>2023 - Present</em>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-        <section id="education" class="section">
-            <h2 class="section-title">Education</h2>
-            <div class="education-content">
-                <ul>
-                    <li><strong>High School:</strong> Boksburg High School (2018 - 2022)
-                        <ul>
-                            <li>Average: 67%</li>
-                            <li>Distinction in Life Orientation</li>
-                            <li>Deputy Head Boy (2022)</li>
-                        </ul>
-                    </li>
-                    <li><strong>University:</strong> North-West University
-                        <ul>
-                            <li>BSc Information Technology (2023 - Present)</li>
-                            <li>NQF Level 7</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </section>
+    <section id="projects" class="section">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-container">
+        <a href="https://github.com/Thoriso04/Virtual-CV" target="_blank" class="project-card">
+          <h3>Virtual CV Website</h3>
+          <p>My interactive online curriculum vitae, showcasing my skills and projects using modern web technologies.</p>
+          <span>View on GitHub &rarr;</span>
+        </a>
+      </div>
+      <div class="contact-info">
+            <h3>Let's Connect!</h3>
+            <p><strong>Email:</strong> <a href="mailto:thorisombambisa004@gmail.com">thorisombambisa004@gmail.com</a></p>
+            <p><strong>Phone:</strong> +27 61 214 1260</p>
+            <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/thoriso-mbambisa-613988269" target="_blank">linkedin.com/in/thoriso-mbambisa-613988269</a></p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/Thoriso04" target="_blank">github.com/Thoriso04</a></p>
+          </div>
+    </section>
+  </main>
 
-        <section id="projects" class="section">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-container">
-                <a href="https://github.com/Thoriso04/Virtual-CV" target="_blank" class="project-card">
-                    <h3>Virtual CV Website</h3>
-                    <p>Responsive, interactive CV built with HTML, CSS, and JavaScript. Hosted on GitHub Pages.</p>
-                </a>
-            </div>
-        </section>
+  <footer>
+    <p>© 2025 Thoriso. All rights reserved.</p>
+  </footer>
 
-        <section id="contact" class="section">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-links">
-                <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-                <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-                <p>GitHub: <a href="https://github.com/Thoriso04" target="_blank">github.com/Thoriso04</a></p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2025 Thoriso. All rights reserved.</p>
-    </footer>
-
-    <script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
