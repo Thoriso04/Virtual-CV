@@ -406,7 +406,7 @@ main {
     box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
 }
 
-/* --- Skills Section with Charts --- */
+/* --- Skills Section Styling (Updated for lists) --- */
 #skills .skills-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -428,7 +428,39 @@ main {
     text-align: center;
 }
 
-/* CRITICAL: Ensure canvas elements have explicit dimensions */
+/* NEW: Styles for the skill lists (Technical and Soft Skills) */
+.skills-category ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+    text-align: left; /* Align text to the left within the list */
+}
+
+.skills-category ul li {
+    background-color: var(--hover-card-background); /* Slightly different background for list items */
+    color: var(--text-on-card-color);
+    padding: 10px 15px;
+    margin-bottom: 10px; /* Space between list items */
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    display: flex; /* Use flexbox for potential icon/alignment */
+    align-items: center;
+    justify-content: space-between; /* Space out content if you add more */
+}
+
+.skills-category ul li:last-child {
+    margin-bottom: 0; /* No margin after the last item */
+}
+
+.skills-category ul li:hover {
+    background-color: var(--primary-color);
+    color: var(--card-background-color);
+    transform: translateX(5px);
+}
+
+/* REMOVED: Styles for canvas elements (no longer needed) */
+/*
 #technicalSkillsChart,
 #softSkillsChart {
     width: 100% !important;
@@ -437,6 +469,7 @@ main {
     margin: 0 auto;
     display: block;
 }
+*/
 
 /*Languages Section Styling*/
 .languages-grid {
@@ -635,7 +668,7 @@ footer {
     /* Hamburger Toggle Button visible on mobile */
     .menu-toggle {
         display: flex; /* THIS IS CORRECT: It makes the menu toggle visible on screens up to 992px */
-        /* Removed gap here, as the bar transformation handles spacing */
+        /* Removed gap here, bars will be positioned for 'X' transform */
     }
 
     /* Navigation links hidden by default on mobile, then slide down */
@@ -679,7 +712,7 @@ footer {
         text-align: center;
         margin: 0.75rem 0; /* Adjusted vertical margin between links */
         /* Removed border-bottom from li here to manage it with a pseudo-element if desired, or let a gap handle it.
-           If you want a visible separator, consider adding it back here or on the anchor tag itself. */
+            If you want a visible separator, consider adding it back here or on the anchor tag itself. */
     }
 
     .nav-links li:last-child {

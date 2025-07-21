@@ -1,8 +1,8 @@
 // Register the datalabels plugin globally (CRITICAL for charts with datalabels)
 // Ensure you have loaded the Chart.js and Chartjs-plugin-datalabels libraries in your HTML
 // e.g., <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-//       <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
-Chart.register(ChartDataLabels);
+//        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+// Chart.register(ChartDataLabels); // REMOVED - No longer needed without Chart.js datalabels
 
 // ===== Typing Effect for Hero Section =====
 const typingTextElement = document.querySelector('.typing-text');
@@ -152,138 +152,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ===== Chart.js - Technical Skills =====
-    // Ensure Chart.js library is loaded BEFORE main.js
-    const technicalSkillsCtx = document.getElementById('technicalSkillsChart');
-    if (technicalSkillsCtx && typeof Chart !== 'undefined') {
-        new Chart(technicalSkillsCtx.getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Microsoft Office 365', 'Python Programming', 'C# ASP.NET Programming', 'Java Programming', 'SQL', 'HTML', 'CSS', 'JavaScript'],
-                datasets: [{
-                    label: 'Proficiency (%)',
-                    data: [90, 75, 70, 50, 45, 40, 40, 45], // Added proficiency %
-                    backgroundColor: 'rgba(30, 144, 255, 0.8)',
-                    borderColor: 'rgba(30, 144, 255, 1)',
-                    borderWidth: 1,
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                indexAxis: 'y', // Horizontal bars
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        max: 100,
-                        beginAtZero: true,
-                        grid: { display: false },
-                        ticks: {
-                            stepSize: 20,
-                            callback: value => value + '%' // Add % to ticks
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        grid: { display: false }
-                    }
-                },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: { enabled: true },
-                    datalabels: { // Datalabels plugin configuration
-                        display: true,
-                        align: 'end',
-                        anchor: 'end',
-                        formatter: (value) => value + '%', // Show value as percentage
-                        color: '#333', // Dark color for readability on light bars
-                        font: {
-                            weight: 'bold'
-                        },
-                        offset: 8
-                    }
-                },
-                animation: {
-                    duration: 1500,
-                    easing: 'easeInOutQuad'
-                }
-            },
-            plugins: [ChartDataLabels] // Register plugin for this chart instance
+    // ===== List Technical Skills =====
+    const technicalSkillsListContainer = document.getElementById('technicalSkillsList');
+    if (technicalSkillsListContainer) {
+        const technicalSkills = ['Microsoft Office 365', 'Python Programming', 'C# ASP.NET Programming', 'Java Programming', 'SQL', 'HTML', 'CSS', 'JavaScript'];
+        const ul = document.createElement('ul');
+        technicalSkills.forEach(skill => {
+            const li = document.createElement('li');
+            li.textContent = skill;
+            ul.appendChild(li);
         });
-    } else if (!technicalSkillsCtx) {
-        console.warn("Element with ID 'technicalSkillsChart' not found. Skipping technical skills chart initialization.");
+        technicalSkillsListContainer.appendChild(ul);
     } else {
-        console.warn("Chart.js library not found. Skipping technical skills chart initialization.");
+        console.warn("Element with ID 'technicalSkillsList' not found. Skipping technical skills list initialization.");
     }
 
-
-    // ===== Chart.js - Soft Skills (Radar Chart) =====
-    // Ensure Chart.js library is loaded BEFORE main.js
-    const softSkillsCtx = document.getElementById('softSkillsChart');
-    if (softSkillsCtx && typeof Chart !== 'undefined') {
-        new Chart(softSkillsCtx.getContext('2d'), {
-            type: 'radar',
-            data: {
-                labels: ['Communication Skills', 'Teamwork', 'Problem-Solving', 'Adaptability', 'Time Management', 'Creativity'],
-                datasets: [{
-                    label: 'Proficiency',
-                    data: [85, 80, 85, 75, 90, 70],
-                    backgroundColor: 'rgba(102, 164, 205, 0.04)',
-                    borderColor: 'rgba(5, 133, 252, 1)',
-                    pointBackgroundColor: 'rgba(5, 133, 252, 1)',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: { enabled: true },
-                    datalabels: { // Datalabels plugin configuration for radar chart
-                        display: true,
-                        formatter: (value) => value + '%', // Show value as percentage
-                        color: '#333', // Dark color for readability
-                        font: {
-                            weight: 'bold'
-                        },
-                        anchor: 'end', // Position label outside the point
-                        align: 'end'
-                    }
-                },
-                scales: {
-                    r: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: {
-                            display: false, // Hide numeric ticks on radar
-                            stepSize: 20,
-                            color: '#333', // Make radar ticks (numbers) visible on dark background
-                            backdropColor: 'transparent' // No background behind labels
-                        },
-                        pointLabels: {
-                            color: '#333' // Make point labels (skills names) visible on dark background
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.2)' // Lighter grid lines
-                        },
-                        angleLines: {
-                            color: 'rgba(255, 255, 255, 0.2)' // Lighter angle lines
-                        }
-                    }
-                },
-                animation: {
-                    duration: 1500,
-                    easing: 'easeInOutQuad'
-                }
-            },
-            plugins: [ChartDataLabels] // Register plugin for this chart instance
+    // ===== List Soft Skills =====
+    const softSkillsListContainer = document.getElementById('softSkillsList');
+    if (softSkillsListContainer) {
+        const softSkills = ['Communication Skills', 'Teamwork', 'Problem-Solving', 'Adaptability', 'Time Management', 'Creativity'];
+        const ul = document.createElement('ul');
+        softSkills.forEach(skill => {
+            const li = document.createElement('li');
+            li.textContent = skill;
+            ul.appendChild(li);
         });
-    } else if (!softSkillsCtx) {
-        console.warn("Element with ID 'softSkillsChart' not found. Skipping soft skills chart initialization.");
+        softSkillsListContainer.appendChild(ul);
     } else {
-        console.warn("Chart.js library not found. Skipping soft skills chart initialization.");
+        console.warn("Element with ID 'softSkillsList' not found. Skipping soft skills list initialization.");
     }
 });
