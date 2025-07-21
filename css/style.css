@@ -55,9 +55,10 @@ a:hover {
 
 /*Header and Navigation*/
 header {
-    position: fixed;
+    position: sticky; /* Changed from fixed to sticky */
+    top: 0; /* Added for sticky positioning */
     width: 100%;
-    top: 0;
+    /* top: 0; */ /* Removed as 'top: 0;' is now part of sticky */
     left: 0;
     background: rgba(34, 34, 34, 0.9);
     padding: 1rem 0;
@@ -67,8 +68,7 @@ header {
 
 .navbar {
     display: flex;
-    /* Allow navigation to wrap or stack on smaller screens */
-    flex-wrap: wrap; /* Allows items to wrap to next line if needed */
+    flex-wrap: wrap; /* Allow logo and nav-links to wrap */
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
@@ -80,28 +80,29 @@ header {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--card-background-color);
-    /* Ensure logo doesn't shrink too much */
     flex-shrink: 0;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
-    /* Allow nav links to take remaining space but be flexible */
+    /* flex-wrap: wrap; */ /* Moved/modified in media query for mobile specific behavior */
+    gap: 1.5rem; /* Gap between horizontal links */
     flex-grow: 1;
     flex-shrink: 1;
-    min-width: 0; /* Important for flex-wrap with items that have min-content */
+    min-width: 0;
     justify-content: flex-end; /* Align to the right on larger screens */
     align-items: center;
+    scroll-behavior: smooth; /* Added for smooth horizontal scrolling */
 }
 
 .nav-links a {
     color: var(--card-background-color);
     font-weight: 600;
     position: relative;
-    padding: 0.5rem 0.5rem; /* Add some padding for better touch targets */
-    white-space: nowrap; /* Prevent nav links from breaking onto multiple lines */
+    padding: 0.5rem 0.5rem;
+    white-space: nowrap; /* Keep nav links text from breaking onto multiple lines */
+    display: inline-block; /* Ensured as per check */
 }
 
 .nav-links a:after {
@@ -560,61 +561,64 @@ footer {
 /* Adjustments for screens up to 992px wide (typical tablet landscape and below) */
 @media (max-width: 992px) {
     .navbar {
-        /* Allow the logo and nav links to wrap onto separate lines if needed */
-        flex-direction: column; /* Stack logo and nav links vertically */
-        align-items: center; /* Center them when stacked */
-        padding: 1rem; /* Adjust padding for smaller screens */
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
     }
 
     .logo {
-        margin-bottom: 1rem; /* Space between logo and nav links when stacked */
-        width: 100%; /* Make logo take full width */
-        text-align: center; /* Center the logo text */
+        margin-bottom: 0.5rem;
+        width: auto;
+        text-align: center;
+        flex-basis: 100%; /* Make logo take full width to force it onto its own line */
+        margin-bottom: 0.5rem;
     }
 
     .nav-links {
-        flex-direction: column; /* Stack nav links vertically */
-        width: 100%; /* Take full width */
-        gap: 0; /* Remove gap between stacked links */
-        justify-content: flex-start; /* Align to the top of the container */
-        align-items: center; /* Center the items themselves */
-        padding: 0; /* Remove horizontal padding that might affect full width */
-        /* To make it appear like the screenshot, ensure it takes up significant height */
-        /* max-height: 80vh; /* Allow it to take up most of the viewport height */
-        /* overflow-y: auto; /* If content exceeds height, allow scrolling */
+        flex-direction: row;
+        flex-wrap: nowrap; /* Keep all links in a single row */
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
+        width: 100%;
+        gap: 1rem; /* Updated gap */
+        justify-content: flex-start; /* Aligned to start */
+        padding: 0.5rem 1rem; /* Updated padding */
+        scrollbar-width: none; /* Hide scrollbar (Firefox) */
     }
+    .nav-links::-webkit-scrollbar {
+        display: none; /* Hide scrollbar (Chrome/Safari) */
+    }
+
 
     .nav-links li {
-        width: 100%; /* Make each list item take full width */
-        text-align: center; /* Center text within each list item */
-        padding: 0.75rem 0; /* Increase padding for better touch targets */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
-    }
-
-    .nav-links li:last-child {
-        border-bottom: none; /* No border for the last link */
+        width: auto;
+        text-align: center;
+        padding: 0;
+        border-bottom: none;
     }
 
     .nav-links a {
-        display: block; /* Make links block-level to ensure full width clickable area */
-        white-space: normal; /* Allow text to wrap within the link if necessary */
-        padding: 0.75rem 0; /* Padding for the link itself */
+        display: inline-block; /* Confirmed as per instruction */
+        white-space: nowrap; /* Confirmed as per instruction */
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
     }
 
-    .nav-links a:after { /* Remove underline animation for mobile menu if desired */
-        display: none;
+    .nav-links a:after {
+        display: none; /* Removed underline animation for mobile if desired */
     }
 
-    /* Adjust header height to encompass the stacked menu */
-    header {
-        padding-bottom: 0; /* Remove bottom padding as nav-links have their own vertical padding */
-        /* min-height: fit-content; /* Allow header to expand to fit content */
-        /* Using auto height might be tricky with fixed position, test this carefully */
+    .btn-download {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
     }
 
-    /* To prevent content from being covered, you might need to add padding-top to main */
+    /* Important: Adjust padding-top for main to prevent content being covered by the header.
+       You might need to fine-tune this value. */
     main {
-        padding-top: var(--header-height-mobile, 200px); /* Adjust this value based on actual header height on mobile */
+        padding-top: 150px; /* This value needs to be slightly larger than the maximum height
+                             your header will be when the links wrap. Test this on your device. */
     }
 }
 
