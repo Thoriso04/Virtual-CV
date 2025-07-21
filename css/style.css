@@ -668,6 +668,22 @@ footer {
     main {
         padding-top: 80px;
     }
+
+    /* Adjustments for Hero Section on medium screens */
+    .hero-section {
+        height: auto; /* Allow height to be determined by content */
+        min-height: 80vh; /* Ensure it's still tall enough to make an impact */
+        padding-top: 5rem; /* Add some top padding to avoid header overlap */
+        padding-bottom: 3rem; /* Add some bottom padding */
+    }
+
+    .intro-text {
+        font-size: clamp(1.8rem, 10vw, 3.5rem); /* Slightly smaller text for mobile */
+    }
+
+    .typing-text {
+        font-size: clamp(1.5rem, 8vw, 3rem); /* Adjust typing text size */
+    }
 }
 
 /* General smaller screen adjustments (e.g., mobile phones) */
@@ -696,6 +712,49 @@ footer {
     .contact-form .btn-submit {
         padding: 14px 20px;
         font-size: 1em;
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 576px) {
+    .hero-section {
+        min-height: 70vh; /* Even smaller for very small phones */
+        padding-top: 4rem;
+        padding-bottom: 2rem;
+    }
+}
+
+/* Add this to your style.css */
+
+.profile-pic {
+    width: 150px; /* Adjust size as needed */
+    height: 150px; /* Should be same as width for a perfect circle */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    margin-bottom: 2rem; /* Space between image and text */
+    border: 4px solid var(--primary-color); /* Optional: add a border */
+    box-shadow: 0 0 20px rgba(30, 144, 255, 0.5); /* Optional: glowing shadow */
+    animation: fadeInScale 1s ease-out forwards; /* Simple animation */
+}
+
+/* Add an animation for the profile picture */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Adjustments for smaller screens if needed */
+@media (max-width: 768px) {
+    .profile-pic {
+        width: 120px; /* Smaller size on mobile */
+        height: 120px;
+        margin-bottom: 1.5rem;
     }
 }
 
