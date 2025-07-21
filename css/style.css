@@ -1,25 +1,25 @@
- /*CSS Variables*/
+/*CSS Variables*/
 :root {
-    --background-color-dark: #222; 
+    --background-color-dark: #222;
     --background-color-medium: #333;
-    --text-color-primary: #eee; 
-    --text-color-light: #ccc; 
-    --text-color-muted: #aaa; 
-    --text-color-faded: #bbb; 
+    --text-color-primary: #eee;
+    --text-color-light: #ccc;
+    --text-color-muted: #aaa;
+    --text-color-faded: #bbb;
 
-    --primary-color: #1e90ff; 
-    --primary-color-hover: #007bb6; 
+    --primary-color: #1e90ff;
+    --primary-color-hover: #007bb6;
 
-    --card-background-color: #ffffff; 
-    --hover-card-background: #f0f0f0; 
-    --heading-on-card-color: #0c0c0c; 
-    --text-on-card-color: #222; 
+    --card-background-color: #ffffff;
+    --hover-card-background: #f0f0f0;
+    --heading-on-card-color: #0c0c0c;
+    --text-on-card-color: #222;
 
-    --border-color-dark: #444; 
-    --shadow-color-light: rgba(0, 0, 0, 0.1); 
-    --shadow-color-medium: rgba(0, 0, 0, 0.15); 
-    --shadow-color-strong: rgba(0, 0, 0, 0.2); 
-    --shadow-color-hover: rgba(0, 0, 0, 0.25); 
+    --border-color-dark: #444;
+    --shadow-color-light: rgba(0, 0, 0, 0.1);
+    --shadow-color-medium: rgba(0, 0, 0, 0.15);
+    --shadow-color-strong: rgba(0, 0, 0, 0.2);
+    --shadow-color-hover: rgba(0, 0, 0, 0.25);
 }
 
 /*Global & Typography*/
@@ -67,6 +67,8 @@ header {
 
 .navbar {
     display: flex;
+    /* Allow navigation to wrap or stack on smaller screens */
+    flex-wrap: wrap; /* Allows items to wrap to next line if needed */
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
@@ -78,18 +80,30 @@ header {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--card-background-color);
+    /* Ensure logo doesn't shrink too much */
+    flex-shrink: 0;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
     gap: 1.5rem;
+    /* Allow nav links to wrap */
+    flex-wrap: wrap;
+    justify-content: flex-end; /* Align to the right on larger screens */
+    align-items: center;
+    /* Allow nav links to take remaining space but be flexible */
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0; /* Important for flex-wrap with items that have min-content */
 }
 
 .nav-links a {
-    color: var(--card-background-color); 
+    color: var(--card-background-color);
     font-weight: 600;
     position: relative;
+    padding: 0.5rem 0.5rem; /* Add some padding for better touch targets */
+    white-space: nowrap; /* Prevent nav links from breaking onto multiple lines */
 }
 
 .nav-links a:after {
@@ -141,7 +155,7 @@ header {
 .intro-text {
     font-size: clamp(2rem, 8vw, 4.5rem);
     font-weight: 700;
-    color: var(--text-color-primary); 
+    color: var(--text-color-primary);
     line-height: 1.2;
 }
 
@@ -174,7 +188,7 @@ header {
 main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 2rem; /* Keep main padding for overall content */
+    padding: 4rem 2rem;
 }
 
 .section {
@@ -184,7 +198,7 @@ main {
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.section.visible { /* This class is added by ScrollReveal.js */
+.section.visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -195,86 +209,84 @@ main {
     border-bottom: 4px solid var(--primary-color);
     padding-bottom: 0.5rem;
     display: inline-block;
-    /* NEW: Adjust margin-left to align with main content */
-    margin-left: 2rem; /* Matches the left padding of 'main' */
+    margin-left: 2rem;
 }
 
 /*About Section*/
 .about-text p {
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
-    color: var(--text-color-light); /* Lighter text for paragraphs */
+    color: var(--text-color-light);
 }
 
-/*Contact Section Layout (UPDATED)*/
+/*Contact Section Layout*/
 .contact-layout {
     display: flex;
-    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
-    gap: 2.5rem; /* Space between the two columns */
-    align-items: flex-start; /* Align items to the top */
-    justify-content: center; /* Center items if total width is less than max */
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .contact-info {
-    /* Reverted to previous styling, removing white background */
-    flex: 0 0 30%; /* Occupy 30% width, don't grow, don't shrink too much */
-    min-width: 280px; /* Minimum width before wrapping */
+    flex: 0 0 30%;
+    min-width: 280px;
     margin-top: 0;
-    padding-top: 1.5rem; /* Original padding */
-    border-top: 1px solid var(--border-color-dark); /* Original border */
-    background-color: transparent; 
-    box-shadow: none; 
-    border-radius: 0; 
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color-dark);
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
     transition: none;
 }
 
 .contact-info:hover {
-    transform: none; /* Remove hover effect */
-    box-shadow: none; /* Remove hover shadow */
+    transform: none;
+    box-shadow: none;
 }
 
 .contact-info h3 {
     font-size: 1.8rem;
-    margin-bottom: 1rem; /* Original margin */
-    color: var(--text-color-primary); /* Lighter text for sub-heading */
-    text-align: left; /* Reverted to left align */
+    margin-bottom: 1rem;
+    color: var(--text-color-primary);
+    text-align: left;
 }
 
 .contact-info p {
-    margin-bottom: 0.5rem; /* Original margin */
-    font-size: 1rem; /* Original font size */
-    color: var(--text-color-light); /* Lighter text for contact info */
-    display: block; /* Reverted to block display */
-    align-items: unset; /* Remove align-items */
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-color-light);
+    display: block;
+    align-items: unset;
 }
 .contact-info p strong {
-    min-width: unset; /* Remove min-width */
-    display: unset; /* Remove inline-block */
-    color: var(--text-color-light); /* Returned to original color */
+    min-width: unset;
+    display: unset;
+    color: var(--text-color-light);
 }
 .contact-info p a {
-    color: var(--primary-color); /* Keep blue for links */
+    color: var(--primary-color);
 }
 .contact-info p a:hover {
-    color: var(--primary-color-hover); /* Darker blue on hover */
+    color: var(--primary-color-hover);
 }
 
 
-/*Contact Form Styling (UPDATED)*/
+/*Contact Form Styling*/
 .contact-form-container {
-    background-color: var(--card-background-color); /* White card background */
+    background-color: var(--card-background-color);
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 5px 20px var(--shadow-color-strong); /* Stronger shadow for the form */
-    flex: 0 0 60%; /* Occupy 60% width */
-    min-width: 320px; /* Minimum width before wrapping */
-    border: 2px solid var(--primary-color); /* Thin blue border */
+    box-shadow: 0 5px 20px var(--shadow-color-strong);
+    flex: 0 0 60%;
+    min-width: 320px;
+    border: 2px solid var(--primary-color);
 }
 
 .contact-form-container h3 {
     text-align: center;
     margin-bottom: 2.5rem;
-    color: var(--heading-on-card-color); /* Dark heading on white card */
+    color: var(--heading-on-card-color);
     font-size: 2em;
 }
 
@@ -286,7 +298,7 @@ main {
     display: block;
     margin-bottom: 0.7rem;
     font-weight: 600;
-    color: var(--text-on-card-color); /* Dark label text */
+    color: var(--text-on-card-color);
     font-size: 1.05em;
 }
 
@@ -295,10 +307,10 @@ main {
 .contact-form textarea {
     width: 100%;
     padding: 14px;
-    border: 1px solid var(--text-color-light); 
+    border: 1px solid var(--text-color-light);
     border-radius: 8px;
-    background-color: #f9f9f9; 
-    color: var(--text-on-card-color); 
+    background-color: #f9f9f9;
+    color: var(--text-on-card-color);
     font-family: 'Montserrat', sans-serif;
     font-size: 1em;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -313,29 +325,29 @@ main {
 }
 
 .contact-form textarea {
-    resize: vertical; /* Allow vertical resizing */
+    resize: vertical;
     min-height: 120px;
 }
 
 .contact-form .btn-submit {
-    display: block; /* Make button take full width */
+    display: block;
     width: 100%;
     padding: 16px 25px;
     background-color: var(--primary-color);
-    color: var(--card-background-color); /* White text on blue button */
+    color: var(--card-background-color);
     border: none;
     border-radius: 8px;
     font-size: 1.1em;
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 2.5rem; /* Space above the button */
+    margin-top: 2.5rem;
 }
 
 .contact-form .btn-submit:hover {
     background-color: var(--primary-color-hover);
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3); /* Shadow for button hover */
+    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
 }
 
 /* --- Skills Section with Charts --- */
@@ -346,17 +358,17 @@ main {
 }
 
 .skills-category {
-    background-color: var(--card-background-color); /* Keep white for strong contrast */
+    background-color: var(--card-background-color);
     border-radius: 10px;
     padding: 30px;
-    box-shadow: 0 4px 15px var(--shadow-color-strong); /* Slightly stronger shadow on dark background */
+    box-shadow: 0 4px 15px var(--shadow-color-strong);
     text-align: center;
 }
 
 .skills-category h3 {
     margin-bottom: 1.5rem;
     font-size: 1.8rem;
-    color: var(--heading-on-card-color); /* Keep dark for contrast with white background */
+    color: var(--heading-on-card-color);
     text-align: center;
 }
 
@@ -373,27 +385,27 @@ main {
 /*Languages Section Styling*/
 .languages-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2 columns on larger screens, wraps on smaller */
-    gap: 25px; /* Space between language cards */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
     padding: 20px 0;
-    max-width: 900px; /* Adjust as needed */
-    margin: 0 auto; /* Center the grid */
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .language-card {
-    background-color: var(--card-background-color); /* White background for cards */
-    color: var(--text-on-card-color); /* Dark text for readability on white card */
+    background-color: var(--card-background-color);
+    color: var(--text-on-card-color);
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 15px var(--shadow-color-light);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    border: 1px solid var(--primary-color); /* Subtle border matching accent */
+    border: 1px solid var(--primary-color);
 }
 
 .language-card h3 {
     margin-top: 0;
-    color: var(--primary-color); /* Your accent color for headings */
+    color: var(--primary-color);
     font-size: 1.6em;
     margin-bottom: 10px;
 }
@@ -401,13 +413,13 @@ main {
 .language-card p {
     font-size: 1.1em;
     margin-bottom: 0;
-    color: var(--text-on-card-color); /* Dark text for details */
+    color: var(--text-on-card-color);
 }
 
 .language-card:hover {
-    transform: translateY(-8px); /* Lift effect on hover */
-    box-shadow: 0 8px 25px var(--shadow-color-hover); /* Enhanced shadow */
-    background-color: var(--hover-card-background); /* Slightly off-white for hover */
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px var(--shadow-color-hover);
+    background-color: var(--hover-card-background);
 }
 
 
@@ -418,12 +430,12 @@ main {
 }
 
 .education-content li {
-    background-color: var(--card-background-color); /* Keep white for strong contrast */
+    background-color: var(--card-background-color);
     padding: 1.5rem;
     border-left: 5px solid var(--primary-color);
     margin-bottom: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 10px var(--shadow-color-light); /* Slightly stronger shadow */
+    box-shadow: 0 4px 10px var(--shadow-color-light);
     transition: transform 0.2s ease;
 }
 
@@ -435,13 +447,13 @@ main {
     display: block;
     font-size: 1.25rem;
     margin-bottom: 0.25rem;
-    color: var(--text-on-card-color); /* Keep dark for contrast with white background */
+    color: var(--text-on-card-color);
 }
 
 .education-content li em {
     display: block;
     font-size: 0.9rem;
-    color: var(--text-color-faded); /* Lighter text for dates */
+    color: var(--text-color-faded);
     margin-bottom: 0.75rem;
 }
 
@@ -449,10 +461,10 @@ main {
     list-style: disc inside;
     margin-top: 0.5rem;
     padding-left: 1rem;
-    color: var(--text-color-faded); /* Lighter text for nested lists */
+    color: var(--text-color-faded);
 }
 
-/*Projects Sectiom*/
+/*Projects Section*/
 .projects-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -460,7 +472,7 @@ main {
 }
 
 .edu-sub {
-    color: var(--text-color-muted); /* soft gray */
+    color: var(--text-color-muted);
     font-weight: 500;
     display: inline-block;
     margin-bottom: 4px;
@@ -470,10 +482,10 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: var(--card-background-color); /* Keep white for strong contrast */
+    background-color: var(--card-background-color);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 5px 15px var(--shadow-color-medium); /* Slightly stronger shadow */
+    box-shadow: 0 5px 15px var(--shadow-color-medium);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: left;
     min-height: 200px;
@@ -481,17 +493,17 @@ main {
 
 .project-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 10px 25px var(--shadow-color-hover); /* Stronger hover shadow */
+    box-shadow: 0 10px 25px var(--shadow-color-hover);
 }
 
 .project-card h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: var(--text-on-card-color); /* Keep dark for contrast with white background */
+    color: var(--text-on-card-color);
 }
 
 .project-card p {
-    color: var(--text-color-muted); /* Lighter text for project descriptions */
+    color: var(--text-color-muted);
     flex-grow: 1;
     margin-bottom: 1rem;
 }
@@ -507,7 +519,7 @@ footer {
     text-align: center;
     padding: 2rem;
     background: var(--background-color-dark);
-    color: var(--card-background-color); /* White for footer text */
+    color: var(--card-background-color);
     font-size: 0.9rem;
 }
 
@@ -519,7 +531,7 @@ footer {
 
 @keyframes blink-caret {
     from, to { border-color: transparent; }
-    50% { border-color: var(--primary-color); } /* Changed to accent color */
+    50% { border-color: var(--primary-color); }
 }
 
 @keyframes bounce {
@@ -535,35 +547,77 @@ footer {
 }
 
 /*Responsive Design*/
-@media (min-width: 993px) { /* Apply desktop layout for screens wider than 992px */
+/* This is for larger screens, ensuring proper column distribution */
+@media (min-width: 993px) {
     .contact-info {
-        flex: 0 0 calc(30% - 1.25rem); /* 30% width minus half of the gap */
+        flex: 0 0 calc(30% - 1.25rem);
         max-width: calc(30% - 1.25rem);
     }
     .contact-form-container {
-        flex: 0 0 calc(60% - 1.25rem); /* 60% width minus half of the gap */
+        flex: 0 0 calc(60% - 1.25rem);
         max-width: calc(60% - 1.25rem);
     }
 }
 
-@media (max-width: 992px) { /* Stack columns on smaller screens */
+/* Adjustments for screens up to 992px wide (typical tablet landscape and below) */
+@media (max-width: 992px) {
+    .navbar {
+        /* Allow the logo and nav links to wrap onto separate lines if needed */
+        flex-direction: column; /* Stack logo and nav links vertically */
+        align-items: center; /* Center them when stacked */
+        padding: 1rem; /* Adjust padding for smaller screens */
+    }
+
+    .logo {
+        margin-bottom: 1rem; /* Space between logo and nav links when stacked */
+    }
+
+    .nav-links {
+        flex-direction: column; /* Stack nav links vertically */
+        width: 100%; /* Take full width */
+        gap: 0.75rem; /* Reduce gap between stacked links */
+        justify-content: center; /* Center the links when stacked */
+        align-items: center; /* Center the items themselves */
+        padding: 0; /* Remove horizontal padding that might affect full width */
+    }
+
+    .nav-links li {
+        width: 100%; /* Make each list item take full width */
+        text-align: center; /* Center text within each list item */
+    }
+
+    .nav-links a {
+        padding: 0.5rem 0; /* Adjust padding for stacked links */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+        display: block; /* Make links block-level to ensure full width clickable area */
+        white-space: normal; /* Allow text to wrap within the link if necessary */
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none; /* No border for the last link */
+    }
+
+    .nav-links a:after { /* Remove underline animation for mobile menu if desired */
+        display: none;
+    }
+
+    /* Contact section will stack columns */
     .contact-layout {
         flex-direction: column;
-        gap: 3rem; /* More space when stacked */
+        gap: 3rem;
     }
     .contact-info, .contact-form-container {
-        flex: 0 0 100%; /* Take full width when stacked */
+        flex: 0 0 100%;
         max-width: 100%;
         margin-left: 0;
         margin-right: 0;
     }
-    /* Adjusted padding for contact info when stacked */
     .contact-info {
         padding: 30px;
         border-radius: 12px;
         box-shadow: 0 4px 15px var(--shadow-color-light);
-        background-color: var(--background-color-medium); /* Slightly differentiate when stacked */
-        border: none; /* Remove border when stacked and given background */
+        background-color: var(--background-color-medium);
+        border: none;
         text-align: left;
     }
     .contact-info h3 {
@@ -575,39 +629,14 @@ footer {
     }
 }
 
+/* General smaller screen adjustments (e.g., mobile phones) */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem;
-    }
-    .nav-links {
-        flex-direction: column;
-        gap: 0.75rem;
-        margin-top: 1rem;
-        width: 100%;
-        text-align: center;
-    }
-    .nav-links li {
-        width: 100%;
-    }
-    .nav-links a {
-        padding: 0.5rem 0;
-        display: block;
-    }
-    .hero-section {
-        padding: 0 1rem;
-    }
-    .intro-text {
-        font-size: clamp(1.8rem, 10vw, 3.5rem);
-    }
     .section-title {
         font-size: 2rem;
-        /* NEW: Adjust margin-left for smaller screens */
-        margin-left: 1rem; /* Matches the left padding of 'main' on smaller screens */
+        margin-left: 1rem;
     }
     main {
-        padding: 2rem 1rem; /* Updated padding for smaller screens */
+        padding: 2rem 1rem;
     }
     .skills-container, .projects-container, .languages-grid {
         grid-template-columns: 1fr;
@@ -631,5 +660,5 @@ footer {
 
 /* Ensure all sections have some padding for spacing */
 section {
-    padding: 80px 5%; /* Adjust vertical padding */
+    padding: 80px 5%;
 }
