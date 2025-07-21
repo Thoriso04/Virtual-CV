@@ -138,7 +138,7 @@ header {
 
 /* Menu Toggle Button Styles */
 .menu-toggle {
-    display: none; /* Hidden by default on desktop */
+    display: none; /* This correctly hides it by default on desktop. */
     flex-direction: column;
     justify-content: space-between; /* Distributes bars evenly */
     width: 25px;
@@ -608,7 +608,7 @@ footer {
 
     /* Hamburger Toggle Button visible on mobile */
     .menu-toggle {
-        display: flex;
+        display: flex; /* THIS IS CORRECT: It makes the menu toggle visible on screens up to 992px */
         gap: 5px; /* Gap between bars */
     }
 
@@ -724,8 +724,7 @@ footer {
     }
 }
 
-/* Add this to your style.css */
-
+/* Profile Picture Styles */
 .profile-pic {
     width: 150px; /* Adjust size as needed */
     height: 150px; /* Should be same as width for a perfect circle */
@@ -737,7 +736,7 @@ footer {
     animation: fadeInScale 1s ease-out forwards; /* Simple animation */
 }
 
-/* Add an animation for the profile picture */
+/* Animation for the profile picture */
 @keyframes fadeInScale {
     from {
         opacity: 0;
