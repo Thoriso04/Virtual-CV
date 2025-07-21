@@ -88,14 +88,12 @@ header {
     list-style: none;
     display: flex;
     gap: 1.5rem;
-    /* Allow nav links to wrap */
-    flex-wrap: wrap;
-    justify-content: flex-end; /* Align to the right on larger screens */
-    align-items: center;
     /* Allow nav links to take remaining space but be flexible */
     flex-grow: 1;
     flex-shrink: 1;
     min-width: 0; /* Important for flex-wrap with items that have min-content */
+    justify-content: flex-end; /* Align to the right on larger screens */
+    align-items: center;
 }
 
 .nav-links a {
@@ -570,62 +568,53 @@ footer {
 
     .logo {
         margin-bottom: 1rem; /* Space between logo and nav links when stacked */
+        width: 100%; /* Make logo take full width */
+        text-align: center; /* Center the logo text */
     }
 
     .nav-links {
         flex-direction: column; /* Stack nav links vertically */
         width: 100%; /* Take full width */
-        gap: 0.75rem; /* Reduce gap between stacked links */
-        justify-content: center; /* Center the links when stacked */
+        gap: 0; /* Remove gap between stacked links */
+        justify-content: flex-start; /* Align to the top of the container */
         align-items: center; /* Center the items themselves */
         padding: 0; /* Remove horizontal padding that might affect full width */
+        /* To make it appear like the screenshot, ensure it takes up significant height */
+        /* max-height: 80vh; /* Allow it to take up most of the viewport height */
+        /* overflow-y: auto; /* If content exceeds height, allow scrolling */
     }
 
     .nav-links li {
         width: 100%; /* Make each list item take full width */
         text-align: center; /* Center text within each list item */
+        padding: 0.75rem 0; /* Increase padding for better touch targets */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none; /* No border for the last link */
     }
 
     .nav-links a {
-        padding: 0.5rem 0; /* Adjust padding for stacked links */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
         display: block; /* Make links block-level to ensure full width clickable area */
         white-space: normal; /* Allow text to wrap within the link if necessary */
-    }
-
-    .nav-links a:last-child {
-        border-bottom: none; /* No border for the last link */
+        padding: 0.75rem 0; /* Padding for the link itself */
     }
 
     .nav-links a:after { /* Remove underline animation for mobile menu if desired */
         display: none;
     }
 
-    /* Contact section will stack columns */
-    .contact-layout {
-        flex-direction: column;
-        gap: 3rem;
+    /* Adjust header height to encompass the stacked menu */
+    header {
+        padding-bottom: 0; /* Remove bottom padding as nav-links have their own vertical padding */
+        /* min-height: fit-content; /* Allow header to expand to fit content */
+        /* Using auto height might be tricky with fixed position, test this carefully */
     }
-    .contact-info, .contact-form-container {
-        flex: 0 0 100%;
-        max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .contact-info {
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px var(--shadow-color-light);
-        background-color: var(--background-color-medium);
-        border: none;
-        text-align: left;
-    }
-    .contact-info h3 {
-        text-align: center;
-        color: var(--text-color-primary);
-    }
-    .contact-info p {
-        text-align: left;
+
+    /* To prevent content from being covered, you might need to add padding-top to main */
+    main {
+        padding-top: var(--header-height-mobile, 200px); /* Adjust this value based on actual header height on mobile */
     }
 }
 
