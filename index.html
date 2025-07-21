@@ -15,7 +15,14 @@
     <header>
         <nav class="navbar">
             <a href="#" class="logo">Thoriso Mbambisa</a>
-            <ul class="nav-links">
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#about" class="nav-link-item">About</a></li>
                 <li><a href="#skills" class="nav-link-item">Skills</a></li>
                 <li><a href="#languages" class="nav-link-item">Languages</a></li>
@@ -96,6 +103,7 @@
                             <li>Operating Systems</li>
                             <li>Networks and Security</li>
                             <li>Systems Analysis and Design</li>
+                            <li>Decision Support Systems</li>
                         </ul>
                     </li>
                     <li>
@@ -176,6 +184,16 @@
     <footer>
         <p>&copy; 2025 Thoriso. All rights reserved.</p>
     </footer>
+
+    <script>
+        const toggleBtn = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        toggleBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            toggleBtn.classList.toggle('open');
+        });
+    </script>
 
     <script src="js/main.js"></script>
 </body>

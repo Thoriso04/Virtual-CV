@@ -55,9 +55,9 @@ a:hover {
 
 /*Header and Navigation*/
 header {
-    position: fixed;
-    width: 100%;
+    position: sticky;
     top: 0;
+    width: 100%;
     left: 0;
     background: rgba(34, 34, 34, 0.9);
     padding: 1rem 0;
@@ -67,8 +67,7 @@ header {
 
 .navbar {
     display: flex;
-    /* Allow navigation to wrap or stack on smaller screens */
-    flex-wrap: wrap; /* Allows items to wrap to next line if needed */
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
@@ -80,28 +79,29 @@ header {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--card-background-color);
-    /* Ensure logo doesn't shrink too much */
     flex-shrink: 0;
 }
 
+/* Default desktop layout for nav-links */
 .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    /* Allow nav links to take remaining space but be flexible */
+    display: flex; /* Ensure it's flex for desktop */
+    gap: 2rem; /* Updated gap */
+    list-style: none; /* Ensure no list bullets */
     flex-grow: 1;
     flex-shrink: 1;
-    min-width: 0; /* Important for flex-wrap with items that have min-content */
+    min-width: 0;
     justify-content: flex-end; /* Align to the right on larger screens */
     align-items: center;
+    scroll-behavior: smooth;
 }
 
 .nav-links a {
     color: var(--card-background-color);
     font-weight: 600;
     position: relative;
-    padding: 0.5rem 0.5rem; /* Add some padding for better touch targets */
-    white-space: nowrap; /* Prevent nav links from breaking onto multiple lines */
+    padding: 0.5rem 0.5rem;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .nav-links a:after {
@@ -134,6 +134,38 @@ header {
 .btn-download:hover {
     background-color: var(--primary-color-hover);
     transform: translateY(-2px);
+}
+
+/* Menu Toggle Button Styles */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    flex-direction: column;
+    justify-content: space-between; /* Distributes bars evenly */
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
+    gap: 5px; /* Added gap between bars */
+}
+
+.menu-toggle .bar { /* Changed from .menu-toggle span to .menu-toggle .bar */
+    background: #fff;
+    height: 3px;
+    border-radius: 2px;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.menu-toggle.open .bar:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
 }
 
 /* --- Hero Section --- */
@@ -557,64 +589,84 @@ footer {
     }
 }
 
-/* Adjustments for screens up to 992px wide (typical tablet landscape and below) */
+/* Responsive layout for screens <= 992px */
 @media (max-width: 992px) {
     .navbar {
-        /* Allow the logo and nav links to wrap onto separate lines if needed */
-        flex-direction: column; /* Stack logo and nav links vertically */
-        align-items: center; /* Center them when stacked */
-        padding: 1rem; /* Adjust padding for smaller screens */
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
     }
 
     .logo {
-        margin-bottom: 1rem; /* Space between logo and nav links when stacked */
-        width: 100%; /* Make logo take full width */
-        text-align: center; /* Center the logo text */
+        margin-bottom: 0;
+        width: auto;
+        text-align: left;
+        flex-basis: auto;
     }
 
+    /* Hamburger Toggle Button visible on mobile */
+    .menu-toggle {
+        display: flex;
+        gap: 5px; /* Gap between bars */
+    }
+
+    /* Navigation links hidden by default on mobile, then slide down */
     .nav-links {
-        flex-direction: column; /* Stack nav links vertically */
-        width: 100%; /* Take full width */
-        gap: 0; /* Remove gap between stacked links */
-        justify-content: flex-start; /* Align to the top of the container */
-        align-items: center; /* Center the items themselves */
-        padding: 0; /* Remove horizontal padding that might affect full width */
-        /* To make it appear like the screenshot, ensure it takes up significant height */
-        /* max-height: 80vh; /* Allow it to take up most of the viewport height */
-        /* overflow-y: auto; /* If content exceeds height, allow scrolling */
+        display: flex; /* Kept flex so children can be flex items */
+        flex-direction: column; /* Stack links vertically */
+        position: absolute; /* Position relative to header */
+        top: 100%; /* Below the header */
+        left: 0;
+        width: 100%;
+        background-color: #111; /* Updated background color */
+        overflow: hidden;
+        max-height: 0; /* Hidden by default, for animation */
+        transition: max-height 0.4s ease-in-out; /* Smooth transition */
+        padding: 1rem; /* Adjust padding as needed */
+        padding-left: 0; /* Ensures no default padding on ul */
+        z-index: 999;
+        
+        /* Specific adjustments for column layout */
+        gap: 0; /* Reset gap for column layout */
+        align-items: center; /* Center items in column */
+        justify-content: flex-start; /* Align from top for column */
+    }
+
+    .nav-links.active {
+        max-height: 500px; /* Expands when active (adjust if menu is taller) */
     }
 
     .nav-links li {
-        width: 100%; /* Make each list item take full width */
-        text-align: center; /* Center text within each list item */
-        padding: 0.75rem 0; /* Increase padding for better touch targets */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+        width: 100%; /* Make list items take full width */
+        text-align: center;
+        margin: 1rem 0; /* Updated margin */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
     }
 
     .nav-links li:last-child {
-        border-bottom: none; /* No border for the last link */
+        border-bottom: none; /* No border on last item */
     }
 
     .nav-links a {
-        display: block; /* Make links block-level to ensure full width clickable area */
-        white-space: normal; /* Allow text to wrap within the link if necessary */
-        padding: 0.75rem 0; /* Padding for the link itself */
+        display: block; /* Make links block level inside list item for full click area */
+        white-space: normal;
+        padding: 0;
+        font-size: 1rem;
     }
 
-    .nav-links a:after { /* Remove underline animation for mobile menu if desired */
-        display: none;
+    .nav-links a:after {
+        display: none; /* Remove underline animation for mobile in stacked menu */
     }
 
-    /* Adjust header height to encompass the stacked menu */
-    header {
-        padding-bottom: 0; /* Remove bottom padding as nav-links have their own vertical padding */
-        /* min-height: fit-content; /* Allow header to expand to fit content */
-        /* Using auto height might be tricky with fixed position, test this carefully */
+    .btn-download {
+        margin-top: 1rem;
+        width: calc(100% - 2rem);
     }
 
-    /* To prevent content from being covered, you might need to add padding-top to main */
     main {
-        padding-top: var(--header-height-mobile, 200px); /* Adjust this value based on actual header height on mobile */
+        padding-top: 80px;
     }
 }
 
