@@ -7,8 +7,8 @@
     --text-color-muted: #aaa;
     --text-color-faded: #bbb;
 
-    --primary-color: #1e90ff;
-    --primary-color-hover: #007bb6;
+    --primary-color: #1e90ff; /* Dodger Blue */
+    --primary-color-hover: #007bb6; /* Darker Blue */
 
     --card-background-color: #ffffff;
     --hover-card-background: #f0f0f0;
@@ -20,6 +20,9 @@
     --shadow-color-medium: rgba(0, 0, 0, 0.15);
     --shadow-color-strong: rgba(0, 0, 0, 0.2);
     --shadow-color-hover: rgba(0, 0, 0, 0.25);
+
+    /* New Variable for Header Height to use in mobile menu positioning */
+    --header-height: 70px; /* Approximate height, adjust if your header changes */
 }
 
 /*Global & Typography*/
@@ -59,20 +62,24 @@ header {
     top: 0;
     width: 100%;
     left: 0;
-    background: rgba(34, 34, 34, 0.9);
+    background: rgba(34, 34, 34, 0.9); /* Slightly transparent background */
     padding: 1rem 0;
     z-index: 1000;
     transition: background 0.3s ease;
+    height: var(--header-height); /* Set a fixed height for easier mobile positioning */
+    display: flex; /* Make header a flex container */
+    align-items: center; /* Vertically center content */
 }
 
 .navbar {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens if needed */
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    width: 100%; /* Ensure navbar takes full width of header container */
 }
 
 .logo {
@@ -84,15 +91,28 @@ header {
 
 /* Default desktop layout for nav-links */
 .nav-links {
-    display: flex; /* Ensure it's flex for desktop */
-    gap: 2rem; /* Updated gap */
-    list-style: none; /* Ensure no list bullets */
+    display: flex;
+    gap: 2rem;
+    list-style: none;
     flex-grow: 1;
     flex-shrink: 1;
     min-width: 0;
-    justify-content: flex-end; /* Align to the right on larger screens */
+    justify-content: flex-end;
     align-items: center;
     scroll-behavior: smooth;
+    /* Reset mobile-specific properties for desktop */
+    position: static;
+    top: auto;
+    left: auto;
+    width: auto;
+    background-color: transparent;
+    max-height: none; /* No max-height constraint */
+    padding: 0;
+    transform: none; /* No transformation on desktop */
+    opacity: 1; /* Fully visible */
+    pointer-events: all; /* Allow interactions */
+    box-shadow: none; /* No shadow */
+    border-top: none; /* No border */
 }
 
 .nav-links a {
@@ -136,37 +156,43 @@ header {
     transform: translateY(-2px);
 }
 
-/* Menu Toggle Button Styles */
+/* --- Hamburger Menu Icon (Bars) Styles --- */
 .menu-toggle {
-    display: none; /* Hidden by default on desktop */
+    display: none; /* Hide by default on desktop, shown by media query */
     flex-direction: column;
-    justify-content: space-between; /* Distributes bars evenly */
-    width: 25px;
+    justify-content: space-between;
+    width: 30px; /* Slightly wider for better visual */
     height: 20px;
     cursor: pointer;
-    z-index: 1100;
-    gap: 5px; /* Added gap between bars */
+    z-index: 1100; /* Ensure it's above everything */
+    position: relative; /* For the 'X' transformation */
+    /* No gap here, bars will be positioned for 'X' transform */
 }
 
-.menu-toggle .bar { /* Changed from .menu-toggle span to .menu-toggle .bar */
-    background: #fff;
-    height: 3px;
-    border-radius: 2px;
+/* Individual bars */
+.menu-toggle .bar {
     width: 100%;
-    transition: 0.3s;
+    height: 3px;
+    background-color: var(--text-color-primary); /* White bars */
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Smooth transition for transformation */
 }
 
-.menu-toggle.open .bar:nth-child(1) {
-    transform: rotate(45deg) translateY(8px);
-}
-
+/* When 'open' class is applied, hide middle bar */
 .menu-toggle.open .bar:nth-child(2) {
     opacity: 0;
 }
 
-.menu-toggle.open .bar:nth-child(3) {
-    transform: rotate(-45deg) translateY(-8px);
+/* When 'open' class is applied, rotate top bar */
+.menu-toggle.open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); /* Moves down then rotates */
 }
+
+/* When 'open' class is applied, rotate bottom bar */
+.menu-toggle.open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg); /* Moves up then rotates */
+}
+
 
 /* --- Hero Section --- */
 .hero-section {
@@ -380,7 +406,7 @@ main {
     box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
 }
 
-/* --- Skills Section with Charts --- */
+/* --- Skills Section Styling (Updated for lists) --- */
 #skills .skills-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -402,7 +428,39 @@ main {
     text-align: center;
 }
 
-/* CRITICAL: Ensure canvas elements have explicit dimensions */
+/* NEW: Styles for the skill lists (Technical and Soft Skills) */
+.skills-category ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+    text-align: left; /* Align text to the left within the list */
+}
+
+.skills-category ul li {
+    background-color: var(--hover-card-background); /* Slightly different background for list items */
+    color: var(--text-on-card-color);
+    padding: 10px 15px;
+    margin-bottom: 10px; /* Space between list items */
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    display: flex; /* Use flexbox for potential icon/alignment */
+    align-items: center;
+    justify-content: space-between; /* Space out content if you add more */
+}
+
+.skills-category ul li:last-child {
+    margin-bottom: 0; /* No margin after the last item */
+}
+
+.skills-category ul li:hover {
+    background-color: var(--primary-color);
+    color: var(--card-background-color);
+    transform: translateX(5px);
+}
+
+/* REMOVED: Styles for canvas elements (no longer needed) */
+/*
 #technicalSkillsChart,
 #softSkillsChart {
     width: 100% !important;
@@ -411,6 +469,7 @@ main {
     margin: 0 auto;
     display: block;
 }
+*/
 
 /*Languages Section Styling*/
 .languages-grid {
@@ -608,52 +667,68 @@ footer {
 
     /* Hamburger Toggle Button visible on mobile */
     .menu-toggle {
-        display: flex;
-        gap: 5px; /* Gap between bars */
+        display: flex; /* THIS IS CORRECT: It makes the menu toggle visible on screens up to 992px */
+        /* Removed gap here, bars will be positioned for 'X' transform */
     }
 
     /* Navigation links hidden by default on mobile, then slide down */
     .nav-links {
-        display: flex; /* Kept flex so children can be flex items */
         flex-direction: column; /* Stack links vertically */
         position: absolute; /* Position relative to header */
-        top: 100%; /* Below the header */
+        /* Use CSS variables for consistent positioning below header */
+        top: var(--header-height);
         left: 0;
         width: 100%;
-        background-color: #111; /* Updated background color */
-        overflow: hidden;
-        max-height: 0; /* Hidden by default, for animation */
-        transition: max-height 0.4s ease-in-out; /* Smooth transition */
-        padding: 1rem; /* Adjust padding as needed */
-        padding-left: 0; /* Ensures no default padding on ul */
-        z-index: 999;
-        
+        background-color: var(--background-color-dark); /* Use your variable for consistency */
+        padding: 1rem 0; /* Adjust padding as needed for mobile menu items */
+        border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separator from header */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for menu */
+
+        /* HIDDEN STATE - Using transform and opacity for smooth slide-in/fade-in */
+        transform: translateY(-100%); /* Start completely above the header */
+        opacity: 0; /* Fully transparent */
+        pointer-events: none; /* Crucial: Prevents clicking hidden links */
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* Smooth transition */
+
+        /* Ensure content doesn't break out due to overflow on active state */
+        overflow-y: auto; /* Allows scrolling if menu content is too long */
+        max-height: calc(100vh - var(--header-height)); /* Max height up to viewport minus header */
+
         /* Specific adjustments for column layout */
-        gap: 0; /* Reset gap for column layout */
+        gap: 0; /* Reset gap for column layout, items use their own padding/margin */
         align-items: center; /* Center items in column */
         justify-content: flex-start; /* Align from top for column */
     }
 
+    /* ACTIVE STATE - When 'active' class is added by JS */
     .nav-links.active {
-        max-height: 500px; /* Expands when active (adjust if menu is taller) */
+        transform: translateY(0); /* Slide into view */
+        opacity: 1; /* Become fully visible */
+        pointer-events: all; /* Allow interactions */
     }
 
     .nav-links li {
         width: 100%; /* Make list items take full width */
         text-align: center;
-        margin: 1rem 0; /* Updated margin */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
+        margin: 0.75rem 0; /* Adjusted vertical margin between links */
+        /* Removed border-bottom from li here to manage it with a pseudo-element if desired, or let a gap handle it.
+            If you want a visible separator, consider adding it back here or on the anchor tag itself. */
     }
 
     .nav-links li:last-child {
-        border-bottom: none; /* No border on last item */
+        border-bottom: none; /* No border on last item if you use it on li */
     }
 
     .nav-links a {
         display: block; /* Make links block level inside list item for full click area */
         white-space: normal;
-        padding: 0;
-        font-size: 1rem;
+        padding: 0.75rem 1rem; /* Added padding to make click area larger */
+        font-size: 1.1rem; /* Slightly larger font size */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Faint separator for each link */
+    }
+
+    .nav-links li:last-of-type a {
+        border-bottom: none; /* No border for the last anchor tag */
     }
 
     .nav-links a:after {
@@ -661,19 +736,20 @@ footer {
     }
 
     .btn-download {
-        margin-top: 1rem;
-        width: calc(100% - 2rem);
+        margin-top: 1.5rem; /* More space above button */
+        width: calc(100% - 4rem); /* Adjust width to account for 2rem padding on nav-links */
+        align-self: center; /* Center the button if it's not full width */
     }
 
     main {
-        padding-top: 80px;
+        padding-top: calc(var(--header-height) + 2rem); /* Add more padding to account for sticky header */
     }
 
     /* Adjustments for Hero Section on medium screens */
     .hero-section {
         height: auto; /* Allow height to be determined by content */
         min-height: 80vh; /* Ensure it's still tall enough to make an impact */
-        padding-top: 5rem; /* Add some top padding to avoid header overlap */
+        padding-top: calc(var(--header-height) + 2rem); /* Add some top padding to avoid header overlap */
         padding-bottom: 3rem; /* Add some bottom padding */
     }
 
@@ -684,13 +760,37 @@ footer {
     .typing-text {
         font-size: clamp(1.5rem, 8vw, 3rem); /* Adjust typing text size */
     }
+
+    /* Contact form elements stacking */
+    .contact-layout {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .contact-info, .contact-form-container {
+        flex: 1 1 100%; /* Take full width */
+        max-width: 100%;
+        min-width: unset; /* Remove min-width constraint */
+    }
+    .contact-info {
+        padding-top: 0; /* Remove top padding if it creates too much space */
+        border-top: none; /* Remove border if it's no longer necessary with stacking */
+    }
+    .contact-info h3, .contact-info p {
+        text-align: center; /* Center contact info text on mobile */
+    }
+    .contact-info p {
+        justify-content: center; /* Center content of p if it's a flex item */
+    }
 }
 
 /* General smaller screen adjustments (e.g., mobile phones) */
 @media (max-width: 768px) {
     .section-title {
         font-size: 2rem;
-        margin-left: 1rem;
+        margin-left: 0; /* Center title on small screens */
+        text-align: center; /* Center title */
+        border-bottom: none; /* Often remove border on very small titles for cleaner look */
+        padding-bottom: 0;
     }
     main {
         padding: 2rem 1rem;
@@ -719,13 +819,22 @@ footer {
 @media (max-width: 576px) {
     .hero-section {
         min-height: 70vh; /* Even smaller for very small phones */
-        padding-top: 4rem;
-        padding-bottom: 2rem;
+        padding-top: calc(var(--header-height) + 1rem); /* Reduced top padding */
+        padding-bottom: 1rem;
+    }
+    .navbar {
+        padding: 0.75rem 1rem; /* Slightly less padding for very small screens */
+    }
+    .logo {
+        font-size: 1.4rem;
+    }
+    .btn-download {
+        font-size: 0.9em; /* Smaller button text */
+        padding: 0.4rem 0.8rem; /* Smaller button padding */
     }
 }
 
-/* Add this to your style.css */
-
+/* Profile Picture Styles */
 .profile-pic {
     width: 150px; /* Adjust size as needed */
     height: 150px; /* Should be same as width for a perfect circle */
@@ -737,7 +846,7 @@ footer {
     animation: fadeInScale 1s ease-out forwards; /* Simple animation */
 }
 
-/* Add an animation for the profile picture */
+/* Animation for the profile picture */
 @keyframes fadeInScale {
     from {
         opacity: 0;
@@ -760,5 +869,5 @@ footer {
 
 /* Ensure all sections have some padding for spacing */
 section {
-    padding: 80px 5%;
+    padding: 80px 5%; /* Keep consistent padding */
 }
