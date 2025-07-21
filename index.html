@@ -14,12 +14,14 @@
 <body>
     <header>
         <nav class="navbar">
-            <a href="#" class="logo">Thoriso Mbambisa</a>
-
-            <div class="menu-toggle" id="menu-toggle">
-                <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </div>
+            <a href="#hero" class="logo">Thoriso Mbambisa</a> <div class="menu-toggle" id="menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
 
             <ul class="nav-links" id="nav-links">
+                <li><a href="#hero" class="nav-link-item">Home</a></li>
                 <li><a href="#about" class="nav-link-item">About</a></li>
                 <li><a href="#skills" class="nav-link-item">Skills</a></li>
                 <li><a href="#languages" class="nav-link-item">Languages</a></li>
@@ -36,7 +38,7 @@
             <div class="hero-content">
                 <img src="img/profile.png" alt="Thoriso profile picture" class="profile-pic">
 
-                <h1 class="intro-text">Hi there I'm Thoriso, a 
+                <h1 class="intro-text">Hi there I'm Thoriso, a
                     <span class="typing-text"></span>
                 </h1>
                 <a href="#about" class="scroll-down-btn">Scroll down</a>
@@ -82,7 +84,8 @@
                     <p>Native Proficiency</p>
                 </div>
                 <div class="language-card">
-                    <h3>Afrikaans</h3> <p>Intermediate</p> </div>
+                    <h3>Afrikaans</h3> <p>Intermediate</p>
+                </div>
             </div>
         </section>
 
@@ -183,16 +186,6 @@
     <footer>
         <p>&copy; 2025 Thoriso. All rights reserved.</p>
     </footer>
-
-    <script>
-        const toggleBtn = document.getElementById('menu-toggle');
-        const navLinks = document.getElementById('nav-links');
-
-        toggleBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            toggleBtn.classList.toggle('open');
-        });
-    </script>
 
     <script src="js/main.js"></script>
 </body>
