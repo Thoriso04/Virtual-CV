@@ -3,190 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thoriso Mbambisa - Portfolio</title>
+    <meta name="description" content="Portfolio of Thoriso Mbambisa - BSc Honours Computer Science & IT Student at North-West University. Specializing in Cloud Data Engineering, Real-Time Web Systems, and Knowledge Graphs.">
+    <meta name="author" content="Thoriso Mbambisa">
+    
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:title" content="Thoriso Mbambisa | Virtual CV & Portfolio">
+    <meta property="og:description" content="Explore my software engineering case studies, cloud pipeline projects, and research.">
+    <meta property="og:type" content="website">
+
+    <title>Thoriso Mbambisa | Computer Science Honours Student</title>
+
+    <!-- Corrected Favicon Path -->
+    <link rel="icon" href="img/profile.png" type="image/png">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- Icons & Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- External Animation Library -->
+    <script src="https://unpkg.com/scrollreveal" defer></script>
+
+    <!-- Core App Logic (Deferred to prevent rendering block) -->
+    <script src="js/main.js" defer></script>
 </head>
-<body>
-    <header>
-        <nav class="navbar">
-            <a href="#hero" class="logo">Thoriso Mbambisa</a>
-            <div class="menu-toggle" id="menu-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#hero" class="nav-link-item">Home</a></li>
-                <li><a href="#about" class="nav-link-item">About</a></li>
-                <li><a href="#skills" class="nav-link-item">Skills</a></li>
-                <li><a href="#languages" class="nav-link-item">Languages</a></li>
-                <li><a href="#education" class="nav-link-item">Education</a></li>
-                <li><a href="#projects" class="nav-link-item">Projects</a></li>
-                <li><a href="#contact" class="nav-link-item">Contact</a></li>
-                <li><a href="Curriculum Vitae.pdf" download class="btn-download">Download CV</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <img src="img/profile.png" alt="Thoriso profile picture" class="profile-pic">
-
-                <h1 class="intro-text">Hi there I'm Thoriso, a
-                    <span class="typing-text"></span>
-                </h1>
-                <a href="#about" class="scroll-down-btn">Scroll down</a>
-            </div>
-        </section>
-
-        <section id="about" class="section">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-text">
-                <p>I am a driven and forward-thinking individual that thrives in dynamic, high-impact environments. I enjoy challenges that demand critical thinking, continuous learning, and a clear sense of purpose. Whether it's building a backend service, analyzing complex data, or learning a new framework, I approach every project with curiosity, resilience, and a results-driven mindset.</p>
-                <p>I am currently studying toward an NQF Level 7 Bachelor of Science degree, and my studies have equipped me with solid foundations in software engineering, databases, and programming. I’m passionate about building clean, efficient, and scalable systems that solve real-world problems.</p>
-                <p>I thrive in environments that challenge my thinking, encourage continuous learning, and push me to grow both as a developer and a problem solver. Whether it's optimizing performance or making sense of data, I enjoy turning complex ideas into practical solutions. Let’s connect - I’m always excited to collaborate and create impactful digital experiences.</p>
-            </div>
-        </section>
-
-        <section id="skills" class="section">
-            <h2 class="section-title">My Skills</h2>
-            <div class="skills-container">
-                <div class="skills-category">
-                    <h3>Technical Skills</h3>
-                    <div id="technicalSkillsList"></div> </div>
-                <div class="skills-category">
-                    <h3>Soft Skills</h3>
-                    <div id="softSkillsList"></div> </div>
-            </div>
-        </section>
-
-        <section id="languages" class="section">
-            <h2 class="section-title">Languages</h2>
-            <div class="languages-grid">
-                <div class="language-card">
-                    <h3>English</h3>
-                    <p>Professional Working Proficiency</p>
-                </div>
-                <div class="language-card">
-                    <h3>isiZulu</h3>
-                    <p>Native Proficiency</p>
-                </div>
-                <div class="language-card">
-                    <h3>SeSotho</h3>
-                    <p>Native Proficiency</p>
-                </div>
-                <div class="language-card">
-                    <h3>Afrikaans</h3>
-                    <p>Intermediate</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="education" class="section">
-            <h2 class="section-title">Education</h2>
-            <div class="education-content">
-                <ul>
-                    <li>
-                        <strong>Bachelor of Science in Information Technology NQF 7</strong>
-                        <em>North-West University, Potchefstroom Campus - 2023 - Present</em>
-                        <p class="edu-sub">Relevant Courses:</p>
-                        <ul>
-                            <li>Programming (Python, Java, C#, ASP.NET)</li>
-                            <li>Database Systems (SQL)</li>
-                            <li>Web Development (HTML, CSS, JavaScript)</li>
-                            <li>Object Oriented Programming</li>
-                            <li>Data Structures and Algorithms</li>
-                            <li>Decision Support Systems</li>
-                            <li>Networks and Security</li>
-                            <li>Systems Analysis and Design</li>
-                            <li>Artificial Intelligence</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong>National Senior Certificate Bachelors Degree Pass</strong>
-                        <em>BoksBurg High School 2018 - 2022</em>
-                        <p class="edu-sub">Subjects:</p>
-                        <ul>
-                            <li>Mathematics</li>
-                            <li>Physical Sciences</li>
-                            <li>Life Sciences</li>
-                            <li>Engineering Graphics and Design</li>
-                            <li>English Home Language</li>
-                            <li>Afrikaans First Additional Language</li>
-                            <li>Life Orientation</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="projects" class="section">
-            <h2 class="section-title">My Projects</h2>
-            <div class="projects-container">
-                <a href="https://github.com/Thoriso04/Virtual-CV" target="_blank" class="project-card">
-                    <h3>Github Profile</h3>
-                    <p>My interactive online curriculum vitae, showcasing my skills and projects using modern web technologies, and my other projects</p>
-                    <span>View on GitHub &rarr;</span>
-                </a>
-                <a href="https://github.com/your-username/project-one" target="_blank" class="project-card">
-                    <h3>Hotel Management System</h3>
-                    <p>Collaborated on hotel management system using ASP.NET Core, C#, and SQL Server. Features user authentication, product catalog, shopping cart, and order processing.</p>
-                    <span>C#, ASP.NET, SQL</span>
-                </a>
-                <a href="https://github.com/your-username/project-two" target="_blank" class="project-card">
-                    <h3>Service complaints analyzer</h3>
-                    <p>Built with Python and Streamlit using visual studio code, this app helps organizations uncover meaningful insights from customer complaints.</p>
-                    <span>Python, Streamlit, Pandas</span>
-                </a>
-            </div>
-        </section>
-
-        <section id="contact" class="section">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-layout">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p><strong>Email:</strong> <a href="mailto:thorisombambisa004@gmail.com">thorisombambisa004@gmail.com</a></p>
-                    <p><strong>Phone:</strong> <a href="tel:+27612141260">+(27) 61 214 1260</a></p>
-                    <p><strong>Location:</strong> Johannesburg, Gauteng</p>
-                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/thoriso-mbambisa-613988269" target="_blank">linkedin.com/in/thoriso-mbambisa-613988269</a></p>
-                    <p><strong>GitHub:</strong> <a href="https://github.com/Thoriso04" target="_blank">github.com/Thoriso04</a></p>
-                </div>
-                <div class="contact-form-container">
-                    <h3>Send Me a Message</h3>
-                    <form action="https://formspree.io/f/mnnznozb" method="POST" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" required placeholder="Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="_replyto" required placeholder="email@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject:</label>
-                            <input type="text" id="subject" name="subject" required placeholder="Regarding your portfolio...">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message:</label>
-                            <textarea id="message" name="message" rows="6" required placeholder="Hi..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Thoriso. All rights reserved.</p>
-    </footer>
-
-    <script src="js/main.js"></script>
-</body>
-</html>
