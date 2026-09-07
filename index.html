@@ -3,15 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Thoriso Mbambisa - BSc Honours Computer Science & IT Student at North-West University. Specializing in Cloud Data Engineering, Real-Time Web Systems, and Knowledge Graphs.">
+    <meta name="description" content="Portfolio of Thoriso Mbambisa - BSc Honours Computer Science & IT Student at North-West University. Specializing in Cloud Data Engineering and Real-Time Web Systems.">
     <meta name="author" content="Thoriso Mbambisa">
     
     <!-- Open Graph / Social Media Preview -->
     <meta property="og:title" content="Thoriso Mbambisa | Virtual CV & Portfolio">
     <meta property="og:description" content="Explore my software engineering case studies, cloud pipeline projects, and research.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thoriso04.github.io/Virtual-CV/">
+    <meta property="og:image" content="https://thoriso04.github.io/Virtual-CV/img/profile.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Thoriso Mbambisa | Computer Science Honours Student">
+    <meta name="twitter:description" content="Explore my software engineering case studies, cloud pipeline projects, and research.">
+    <meta name="twitter:image" content="https://thoriso04.github.io/Virtual-CV/img/profile.png">
 
     <title>Thoriso Mbambisa | Computer Science Honours Student</title>
+
+    <!-- Domain Preconnects -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
 
     <!-- Corrected Favicon Path -->
     <link rel="icon" href="img/profile.png" type="image/png">
@@ -25,6 +37,114 @@
     <!-- External Animation Library -->
     <script src="https://unpkg.com/scrollreveal" defer></script>
 
-    <!-- Core App Logic (Deferred to prevent rendering block) -->
+    <!-- Core App Logic -->
     <script src="js/main.js" defer></script>
 </head>
+<body>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <nav class="nav-container" aria-label="Main Navigation">
+            <a href="#home" class="nav-logo">Thoriso<span>.dev</span></a>
+            
+            <button class="nav-toggle" id="nav-toggle" aria-label="toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Tech Stack</a></li>
+                <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item">
+                    <a href="Curriculum Vitae.pdf" class="nav-btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-download"></i> Download CV
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-badge">BSc Honours in Computer Science & IT</span>
+                    <h1 class="hero-title">Thoriso Mbambisa</h1>
+                    <h2 class="hero-subtitle">
+                        Software Engineer · Cloud Data Pipeline Specialist · Researcher
+                    </h2>
+                    <p class="hero-description">
+                        Currently pursuing BSc Honours in Computer Science & IT at North-West University. 
+                        Specializing in real-time distributed data pipelines, cloud-native backend systems, and knowledge graph research[cite: 1].
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">Explore Engineering Projects</a>
+                        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                    <div class="hero-socials">
+                        <a href="https://github.com/Thoriso04" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/thoriso-mbambisa-613988269" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:thorisombambisa004@gmail.com" aria-label="Email Thoriso">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="img/profile.png" alt="Thoriso Mbambisa Profile Picture" class="hero-profile-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section Placeholder -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About Me</h2>
+                <p>Passionate about building scalable software applications and data processing architectures[cite: 1].</p>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section Placeholder -->
+        <section id="skills" class="section">
+            <div class="container">
+                <h2>Tech Stack</h2>
+            </div>
+        </section>
+
+        <!-- Education Section Placeholder -->
+        <section id="education" class="section">
+            <div class="container">
+                <h2>Education</h2>
+            </div>
+        </section>
+
+        <!-- Projects Section Placeholder -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2>Engineering Projects</h2>
+            </div>
+        </section>
+
+        <!-- Contact Section Placeholder -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Contact Me</h2>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Thoriso Mbambisa. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
