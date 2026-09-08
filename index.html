@@ -52,7 +52,7 @@
                 <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                 <li class="nav-item">
-                    <a href="Curriculum Vitae.pdf" class="nav-btn" target="_blank" rel="noopener noreferrer">
+                    <a href="Thoriso_Mbambisa_CV.pdf" class="nav-btn" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-file-download" aria-hidden="true"></i> Download CV
                     </a>
                 </li>
@@ -68,14 +68,14 @@
                     <span class="hero-badge">BSc Honours in Computer Science & IT</span>
                     <h1 class="hero-title">Thoriso Mbambisa</h1>
                     <p class="hero-subtitle">
-                        Software Engineer · Cloud Data Pipeline Specialist · Researcher
+                        Software Engineer · Data Engineering · Researcher
                     </p>
                     <p class="hero-description">
                         Currently pursuing BSc Honours in Computer Science & IT at North-West University.
                         Focusing on real-time distributed data pipelines and cloud-native backend systems.
                     </p>
                     <div class="hero-actions">
-                        <a href="#projects" class="btn btn-primary">Explore Engineering Projects</a>
+                        <a href="#projects" class="btn btn-primary">Exploring projects that solve real world issues </a>
                         <a href="#contact" class="btn btn-secondary">Get in Touch</a>
                     </div>
                     <div class="hero-socials">
@@ -169,6 +169,7 @@
                         <ul class="skill-list">
                             <li>Agile / Scrum</li>
                             <li>RESTful API Design</li>
+                            <li>Waterfall</li>
                         </ul>
                     </div>
                 </div>
@@ -232,7 +233,7 @@
         <!-- Projects Section -->
         <section id="projects" class="section">
             <div class="container">
-                <h2>Engineering Projects</h2>
+                <h2>View Projects</h2>
 
                 <article class="case-study">
                     <header class="case-study-header">
@@ -274,12 +275,16 @@
                     </div>
 
                     <div class="case-study-block">
-                        <h4>Engineering Trade-offs</h4>
+                        <h4>Trade-offs</h4>
                         <p><strong>Why two databases?</strong> Cosmos DB handles fast, flexible writes for downstream flexibility; Azure SQL Database keeps a structured, relational copy for BI tooling that expects tabular data. Splitting the write path avoided forcing one database to do both jobs well.</p>
                         <p><strong>Why build in fault tolerance?</strong> Dead-letter routing catches events that fail processing so they don't silently disappear, duplicate detection prevents double-counting, and late-arrival handling accounts for out-of-order events, standard concerns in production streaming that are easy to skip in a student project.</p>
                     </div>
 
-                    <!-- TODO: add real repo link once public -->
+                    <a href="https://github.com/jaden-straw/nwu-classroom-polling-group-2-fork"
+    target="_blank"
+   rel="noopener noreferrer"
+   class="project-link">
+    Vie
                 </article>
 
                 <article class="case-study">
@@ -324,12 +329,17 @@
                     </div>
 
                     <div class="case-study-block">
-                        <h4>Engineering Trade-offs</h4>
+                        <h4>Trade-offs</h4>
                         <p><strong>Why Socket.IO instead of polling the API?</strong> Live results need to feel instant – Socket.IO gives sub-millisecond delivery rather than students refreshing or the client polling on an interval.</p>
                         <p><strong>How is multi-role access secured?</strong> JWT authentication with bcrypt-hashed passwords separates Student, Lecturer, and Admin roles, while Redis-backed caching keeps session lookups fast under concurrent load without hitting PostgreSQL on every request. The platform also supports POPIA-compliant anonymous guest access, so students can participate without their identity being tied to a response.</p>
                     </div>
 
-                    <!-- TODO: add real repo link once public -->
+                    <a href="https://github.com/Thoriso04/Real-Time-E-Commerce-Streaming-Pipeline-"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="project-link">
+    View Repository
+</a>
                 </article>
             </div>
         </section>
@@ -338,7 +348,7 @@
         <section id="contact" class="section">
             <div class="container">
                 <h2>Contact Me</h2>
-                <p class="section-intro">Open to graduate software engineering, data engineering, and AI/ML roles.</p>
+                <p class="section-intro">Open to graduate software engineering, and data engineering.</p>
 
                 <div class="contact-grid">
                     <div class="contact-info">
@@ -366,8 +376,7 @@
                         </ul>
                     </div>
 
-                    <!-- TODO: replace YOUR_FORM_ID with your real Formspree endpoint -->
-                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+                    <form action="https://formspree.io/f/mnnznozb" method="POST" class="contact-form">
                         <div class="form-group">
                             <label for="contact-name">Name</label>
                             <input type="text" id="contact-name" name="name" required autocomplete="name">
