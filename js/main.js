@@ -1,57 +1,55 @@
-// ============================================================
-// THORISO MBAMBISA — VIRTUAL CV
-// Main JavaScript
-// ============================================================
-
 document.addEventListener("DOMContentLoaded", () => {
+    "use strict";
 
-    // ========================================================
-    // ELEMENT REFERENCES
-    // ========================================================
+    /* =========================================
+       ELEMENT REFERENCES
+    ========================================= */
 
-    const header = document.querySelector(".navbar");
     const navToggle = document.getElementById("nav-toggle");
     const navMenu = document.getElementById("nav-menu");
-
     const navLinks = document.querySelectorAll(".nav-link");
-    const sections = document.querySelectorAll("main section[id]");
+    const navbar = document.querySelector(".navbar");
+
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
 
 
-    // ========================================================
-    // MOBILE NAVIGATION
-    // ========================================================
+    /* =========================================
+       MOBILE NAVIGATION
+    ========================================= */
 
     if (navToggle && navMenu) {
 
         navToggle.addEventListener("click", () => {
 
-            const isOpen =
-                navMenu.classList.toggle("active");
+            const isOpen = navMenu.classList.toggle("active");
 
-            navToggle.classList.toggle(
-                "active",
-                isOpen
-            );
+            navToggle.classList.toggle("active", isOpen);
 
             navToggle.setAttribute(
                 "aria-expanded",
                 String(isOpen)
             );
 
-            document.body.classList.toggle(
-                "menu-open",
-                isOpen
-            );
+            // Change hamburger icon to X
+            const icon = navToggle.querySelector("i");
+
+            if (icon) {
+                icon.classList.toggle("fa-bars", !isOpen);
+                icon.classList.toggle("fa-xmark", isOpen);
+            }
+
         });
 
 
-        // Close menu after selecting a navigation link
-        navLinks.forEach(link => {
+        /* Close menu when a navigation link is clicked */
+
+        navLinks.forEach((link) => {
 
             link.addEventListener("click", () => {
 
                 navMenu.classList.remove("active");
-
                 navToggle.classList.remove("active");
 
                 navToggle.setAttribute(
@@ -59,24 +57,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     "false"
                 );
 
-                document.body.classList.remove(
-                    "menu-open"
-                );
+                const icon = navToggle.querySelector("i");
+
+                if (icon) {
+                    icon.classList.remove("fa-xmark");
+                    icon.classList.add("fa-bars");
+                }
+
             });
 
         });
 
 
-        // Close menu with Escape
-        document.addEventListener("keydown", event => {
+        /* Close menu with Escape */
 
-            if (
-                event.key === "Escape" &&
-                navMenu.classList.contains("active")
-            ) {
+        document.addEventListener("keydown", (event) => {
+
+            if (event.key === "Escape" && navMenu.classList.contains("active")) {
 
                 navMenu.classList.remove("active");
-
                 navToggle.classList.remove("active");
 
                 navToggle.setAttribute(
@@ -84,11 +83,47 @@ document.addEventListener("DOMContentLoaded", () => {
                     "false"
                 );
 
-                document.body.classList.remove(
-                    "menu-open"
-                );
+                const icon = navToggle.querySelector("i");
+
+                if (icon) {
+                    icon.classList.remove("fa-xmark");
+                    icon.classList.add("fa-bars");
+                }
 
                 navToggle.focus();
+            }
+
+        });
+
+
+        /* Close menu when clicking outside */
+
+        document.addEventListener("click", (event) => {
+
+            const clickedInsideNavigation =
+                navMenu.contains(event.target) ||
+                navToggle.contains(event.target);
+
+            if (
+                !clickedInsideNavigation &&
+                navMenu.classList.contains("active")
+            ) {
+
+                navMenu.classList.remove("active");
+                navToggle.classList.remove("active");
+
+                navToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                const icon = navToggle.querySelector("i");
+
+                if (icon) {
+                    icon.classList.remove("fa-xmark");
+                    icon.classList.add("fa-bars");
+                }
+
             }
 
         });
@@ -96,168 +131,116 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // ========================================================
-    // SMOOTH SCROLLING
-    // ========================================================
+    /* =========================================
+       SMOOTH SCROLLING
+    ========================================= */
 
-    document
-        .querySelectorAll('a[href^="#"]')
-        .forEach(anchor => {
+    const anchorLinks = document.querySelectorAll(
+        'a[href^="#"]'
+    );
 
-            anchor.addEventListener("click", event => {
+    anchorLinks.forEach((link) => {
 
-                const targetId =
-                    anchor.getAttribute("href");
+        link.addEventListener("click", (event) => {
 
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
-                }
+            const targetId = link.getAttribute("href");
 
-                const target =
-                    document.querySelector(targetId);
+            if (!targetId || targetId === "#") {
+                return;
+            }
 
-                if (!target) {
-                    return;
-                }
+            const target = document.querySelector(targetId);
 
-                event.preventDefault();
+            if (!target) {
+                return;
+            }
 
-                const headerHeight =
-                    header
-                        ? header.offsetHeight
-                        : 0;
+            event.preventDefault();
 
-                const targetPosition =
-                    target.getBoundingClientRect().top +
-                    window.scrollY -
-                    headerHeight -
-                    16;
+            const navbarHeight = navbar
+                ? navbar.offsetHeight
+                : 0;
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: "smooth"
-                });
+            const targetPosition =
+                target.getBoundingClientRect().top +
+                window.scrollY -
+                navbarHeight;
 
-                history.pushState(
-                    null,
-                    "",
-                    targetId
-                );
+            window.scrollTo({
+                top: targetPosition,
+                behavior: prefersReducedMotion
+                    ? "auto"
+                    : "smooth"
             });
 
         });
 
-
-    // ========================================================
-    // ACTIVE NAVIGATION LINK
-    // ========================================================
-
-    const updateActiveNavigation = () => {
-
-        if (
-            !sections.length ||
-            !navLinks.length
-        ) {
-            return;
-        }
-
-        const headerHeight =
-            header
-                ? header.offsetHeight
-                : 0;
-
-        const scrollPosition =
-            window.scrollY +
-            headerHeight +
-            100;
-
-        let currentSection = "home";
+    });
 
 
-        sections.forEach(section => {
+    /* =========================================
+       ACTIVE NAVIGATION STATE
+    ========================================= */
 
-            const sectionTop =
-                section.offsetTop;
-
-            const sectionBottom =
-                sectionTop +
-                section.offsetHeight;
-
-            if (
-                scrollPosition >= sectionTop &&
-                scrollPosition < sectionBottom
-            ) {
-                currentSection =
-                    section.id;
-            }
-
-        });
-
-
-        navLinks.forEach(link => {
-
-            const targetId =
-                link
-                    .getAttribute("href")
-                    ?.replace("#", "");
-
-            link.classList.toggle(
-                "active",
-                targetId === currentSection
-            );
-
-        });
-
-    };
-
-
-    window.addEventListener(
-        "scroll",
-        updateActiveNavigation,
-        { passive: true }
+    const sections = document.querySelectorAll(
+        "main section[id]"
     );
 
-    updateActiveNavigation();
+    if (sections.length && navLinks.length) {
+
+        const updateActiveNavigation = () => {
+
+            const scrollPosition =
+                window.scrollY +
+                (navbar ? navbar.offsetHeight : 0) +
+                150;
+
+            let currentSection = "";
+
+            sections.forEach((section) => {
+
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+
+                if (
+                    scrollPosition >= sectionTop &&
+                    scrollPosition < sectionTop + sectionHeight
+                ) {
+                    currentSection = section.id;
+                }
+
+            });
 
 
-    // ========================================================
-    // NAVBAR SCROLL STATE
-    // ========================================================
+            navLinks.forEach((link) => {
 
-    const updateNavbar = () => {
+                const linkTarget =
+                    link.getAttribute("href");
 
-        if (!header) {
-            return;
-        }
+                link.classList.toggle(
+                    "active",
+                    linkTarget === `#${currentSection}`
+                );
 
-        header.classList.toggle(
-            "scrolled",
-            window.scrollY > 20
+            });
+
+        };
+
+
+        window.addEventListener(
+            "scroll",
+            updateActiveNavigation,
+            { passive: true }
         );
-    };
+
+        updateActiveNavigation();
+
+    }
 
 
-    window.addEventListener(
-        "scroll",
-        updateNavbar,
-        { passive: true }
-    );
-
-    updateNavbar();
-
-
-    // ========================================================
-    // SCROLLREVEAL
-    // ========================================================
-
-    const prefersReducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
-
+    /* =========================================
+       SCROLLREVEAL ANIMATIONS
+    ========================================= */
 
     if (
         typeof ScrollReveal !== "undefined" &&
@@ -265,179 +248,147 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
 
         const reveal = ScrollReveal({
-
-            distance: "40px",
-
+            distance: "30px",
             duration: 800,
-
             easing: "ease-out",
-
-            interval: 100,
-
+            opacity: 0,
+            origin: "bottom",
+            scale: 0.98,
             reset: false,
-
-            viewFactor: 0.15
-
+            mobile: true
         });
 
 
-        // Hero
-        reveal.reveal(".hero-content", {
+        /* Section headings */
 
-            origin: "left",
-
-            delay: 150
-
-        });
-
-
-        reveal.reveal(
-            ".hero-image-wrapper",
-            {
-
-                origin: "right",
-
-                delay: 300
-
-            }
-        );
-
-
-        // Section headings
         reveal.reveal(
             ".section-intro",
             {
-
                 origin: "bottom",
-
+                distance: "25px",
                 delay: 100
-
             }
         );
 
 
-        // About
+        /* About */
+
         reveal.reveal(
             ".about-text",
             {
-
                 origin: "bottom",
-
+                distance: "25px",
                 delay: 150
-
             }
         );
 
 
-        // Skills
+        /* Skills */
+
         reveal.reveal(
             ".skill-category",
             {
-
                 origin: "bottom",
-
-                interval: 120
-
+                distance: "25px",
+                interval: 100
             }
         );
 
 
-        // Education
+        /* Education */
+
         reveal.reveal(
             ".timeline-item",
             {
-
                 origin: "left",
-
+                distance: "30px",
                 interval: 150
-
             }
         );
 
 
-        reveal.reveal(
-            ".education-extra-block",
-            {
+        /* Featured projects */
 
-                origin: "bottom",
-
-                interval: 150
-
-            }
-        );
-
-
-        // Featured projects
         reveal.reveal(
             ".case-study",
             {
-
                 origin: "bottom",
-
-                delay: 150
-
+                distance: "35px",
+                interval: 200
             }
         );
 
 
-        reveal.reveal(
-            ".case-study-block",
-            {
+        /* Additional projects */
 
-                origin: "bottom",
-
-                interval: 100
-
-            }
-        );
-
-
-        // Additional projects
         reveal.reveal(
             ".project-card",
             {
-
                 origin: "bottom",
-
+                distance: "30px",
                 interval: 120
-
             }
         );
 
 
-        // Contact
+        /* Contact */
+
         reveal.reveal(
             ".contact-info",
             {
-
                 origin: "left",
-
-                delay: 150
-
+                distance: "30px"
             }
         );
-
 
         reveal.reveal(
             ".contact-form",
             {
-
                 origin: "right",
-
-                delay: 250
-
+                distance: "30px",
+                delay: 150
             }
         );
 
-    } else if (
-        typeof ScrollReveal === "undefined"
-    ) {
+    }
 
-        console.warn(
-            "ScrollReveal library not found. " +
-            "Animations have been skipped."
+
+    /* =========================================
+       HERO IMAGE LOAD EFFECT
+    ========================================= */
+
+    const profileImage = document.querySelector(
+        ".hero-profile-img"
+    );
+
+    if (profileImage) {
+
+        profileImage.addEventListener(
+            "load",
+            () => {
+                profileImage.classList.add("loaded");
+            },
+            { once: true }
         );
 
     }
+
+
+    /* =========================================
+       EXTERNAL LINKS
+    ========================================= */
+
+    const externalLinks = document.querySelectorAll(
+        'a[target="_blank"]'
+    );
+
+    externalLinks.forEach((link) => {
+
+        link.setAttribute(
+            "rel",
+            "noopener noreferrer"
+        );
+
+    });
 
 });
