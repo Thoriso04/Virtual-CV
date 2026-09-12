@@ -641,6 +641,99 @@ strong {
     margin-bottom: 0;
 }
 
+.about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 0.9fr);
+    gap: 80px;
+
+    align-items: start;
+}
+
+.about-text {
+    max-width: 680px;
+}
+
+.about-text p {
+    margin: 0 0 24px;
+
+    color: #94a3b8;
+
+    font-size: 1rem;
+    line-height: 1.85;
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
+.about-text strong {
+    color: #e2e8f0;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   ABOUT FOCUS CARDS
+========================================= */
+
+.about-focus {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.about-focus-card {
+    min-height: 190px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 24px;
+
+    background: #0b1120;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+
+    transition:
+        border-color 180ms ease,
+        background-color 180ms ease,
+        transform 180ms ease;
+}
+
+.about-focus-card:hover {
+    background: #101827;
+    border-color: #334155;
+
+    transform: translateY(-3px);
+}
+
+.about-focus-number {
+    color: #38bdf8;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.about-focus-card h3 {
+    margin: 0 0 8px;
+
+    color: #f8fafc;
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.about-focus-card p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
 
 /* ============================================================
    SKILLS
@@ -1779,6 +1872,32 @@ strong {
 
     .hero-socials {
         margin-top: 26px;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .about-text {
+        max-width: 760px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .about-focus {
+        grid-template-columns: 1fr;
+    }
+
+    .about-focus-card {
+        min-height: 160px;
     }
 
 }
